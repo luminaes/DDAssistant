@@ -1,7 +1,6 @@
 package com.example.ddassistant.data
 
 import androidx.lifecycle.LiveData
-import com.example.test_loggin.data.User
 
 
 class UserRepository (private var userDao: UserDao) {

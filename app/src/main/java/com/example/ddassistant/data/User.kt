@@ -1,4 +1,4 @@
-package com.example.test_loggin.data
+package com.example.ddassistant.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 data class User(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val user: String,
+    val username: String,
     val pass: String,
     val email: String,
 )

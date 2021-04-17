@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.example.test_loggin.data.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -20,7 +19,7 @@ class UserViewModel(application: Application) :AndroidViewModel(application) {
         repository = UserRepository(userDao)
         readAllData = repository.readAllData
     }
-    fun addUser(user:User){
+    fun addUser(user: User){
         viewModelScope.launch (Dispatchers.IO) {
             repository.addUser(user)
         }
