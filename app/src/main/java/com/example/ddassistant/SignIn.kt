@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.ddassistant.data.User
 import com.example.ddassistant.data.UserViewModel
+import java.util.List.of
 
 class SignIn : AppCompatActivity() {
 
@@ -19,6 +20,7 @@ class SignIn : AppCompatActivity() {
         setContentView(R.layout.activity_sign_in)
 
         mUserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+
         val back = findViewById<Button>(R.id.btn_activity_sing_in_back)
         back.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
