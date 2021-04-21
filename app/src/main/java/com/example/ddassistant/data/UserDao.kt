@@ -10,6 +10,9 @@ import androidx.room.Query
 interface UserDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE) // ignora en caso de dato repetido
     suspend fun addUser(user : User)
+    //LogIN
+    @Query(value = "SELECT * FROM user_table where username = :user and pass = :pass")
+    fun findOne(user: String, pass: String): LiveData<User?>?  //live data para consulta asincronica
 
     @Query(value = "SELECT * FROM user_table ORDER BY id ASC")
     fun readAlldata(): LiveData<List<User>>

@@ -12,7 +12,7 @@ import com.example.ddassistant.data.User
 import com.example.ddassistant.data.UserViewModel
 import java.util.List.of
 
-class SignIn : AppCompatActivity() {
+class SignUp : AppCompatActivity() {
 
     private lateinit var mUserViewModel:UserViewModel
     override fun onCreate(savedInstanceState: Bundle?) {

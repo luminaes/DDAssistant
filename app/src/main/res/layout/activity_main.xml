@@ -8,7 +8,7 @@
 
 
     <EditText
-        android:id="@+id/activity_main_name"
+        android:id="@+id/txt_activity_main_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -41,7 +41,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_activity_main_log" />
 
     <EditText
-        android:id="@+id/activity_main_pass"
+        android:id="@+id/txt_activity_main_pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -56,7 +56,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_main_name" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_activity_main_name" />
 
     <Button
         android:id="@+id/btn_activity_main_log"
@@ -71,7 +71,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_main_pass" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_activity_main_pass" />
 
     <ImageView
         android:id="@+id/imageView"
