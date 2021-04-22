@@ -7,12 +7,50 @@
     tools:context=".Menu">
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="Button"
+        android:id="@+id/btn_activity_menu_media"
+        android:layout_width="148dp"
+        android:layout_height="146dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:background="@drawable/button_bg_rounded_corners"
+        android:padding="15dp"
+        android:text="Media"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_activity_menu_record"
+        android:layout_width="148dp"
+        android:layout_height="146dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_bg_rounded_corners"
+        android:padding="15dp"
+        android:text="Grabar"
+        app:layout_constraintBottom_toTopOf="@+id/btn_activity_menu_media"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_activity_menu_capture"
+        android:layout_width="148dp"
+        android:layout_height="146dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_bg_rounded_corners"
+        android:padding="15dp"
+        android:text="Foto"
+        app:layout_constraintBottom_toTopOf="@+id/btn_activity_menu_send_loation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/btn_activity_menu_record" />
+
+    <Button
+        android:id="@+id/btn_activity_menu_send_loation"
+        android:layout_width="148dp"
+        android:layout_height="146dp"
+        android:background="@drawable/button_bg_rounded_corners"
+        android:padding="15dp"
+        android:text="Localizacion"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_activity_menu_media" />
 </androidx.constraintlayout.widget.ConstraintLayout>

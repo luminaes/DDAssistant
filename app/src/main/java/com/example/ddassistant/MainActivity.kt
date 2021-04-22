@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.content.Intent
 import android.widget.EditText
+import android.widget.Toast
 import androidx.room.Dao
 import com.example.ddassistant.data.AppDatabase
 import com.example.ddassistant.data.User
@@ -15,7 +16,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //lateinit var UserDao: UserDao
+        lateinit var UserDao: UserDao
+        lateinit var db: AppDatabase
 
         val login = findViewById<Button>(R.id.btn_activity_main_log)
         login.setOnClickListener {
@@ -24,9 +26,11 @@ class MainActivity : AppCompatActivity() {
             val logInUserName = userEditText.text.toString()
             val logInUserPass = passEditText.text.toString()
             //val userCheck = AppDatabase.getDatabase(application).UserDao()
-            val UserDao = AppDatabase.getDatabase(application).UserDao()
 
-            if(UserDao.findOne(logInUserName,logInUserPass)?.equals(null)!!){
+            val userDao = AppDatabase.getDatabase(application).UserDao()
+
+            if(userDao.findOne(logInUserName,logInUserPass)?.equals(null)!!){
+                Toast.makeText(this, "Datos Incorrectos", Toast.LENGTH_LONG).show()
 
             }else{
                 val intent2 = Intent(this,Menu::class.java)
