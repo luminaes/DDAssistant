@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
             //val userCheck = AppDatabase.getDatabase(application).UserDao()
 
             val userDao = AppDatabase.getDatabase(application).UserDao()
-            if(userDao.findOne(logInUserName,logInUserPass)?.equals(null)!!){
+            /if(userDao.findOne(logInUserName,logInUserPass)?.equals(null)!!){
                 Toast.makeText(this, "Datos Incorrectos", Toast.LENGTH_LONG).show()
 
             }else{

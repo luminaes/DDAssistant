@@ -25,4 +25,12 @@ class UserViewModel(application: Application) :AndroidViewModel(application) {
         }
     }
 
+    fun findOne(user: String, pass: String){
+        viewModelScope.launch (Dispatchers.IO){
+            repository.findOne(user,pass)
+        }
+    }
+
+
+
 }
