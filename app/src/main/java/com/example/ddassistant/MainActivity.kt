@@ -6,16 +6,16 @@ import android.widget.Button
 import android.content.Intent
 import android.widget.EditText
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.room.Dao
-import com.example.ddassistant.data.AppDatabase
-import com.example.ddassistant.data.User
-import com.example.ddassistant.data.UserDao
-import com.example.ddassistant.data.UserRepository
+import com.example.ddassistant.data.*
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var mUserViewModel:UserViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         val login = findViewById<Button>(R.id.btn_activity_main_log)
         login.setOnClickListener {
@@ -26,23 +26,31 @@ class MainActivity : AppCompatActivity() {
             //val userCheck = AppDatabase.getDatabase(application).UserDao()
 
             val userDao = AppDatabase.getDatabase(application).UserDao()
-            /if(userDao.findOne(logInUserName,logInUserPass)?.equals(null)!!){
+            mUserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+            val user= mUserViewModel.findOne(logInUserName,logInUserPass)
+
+            if(user!=null){
+                val intent2 = Intent(this,Menu::class.java)
+                startActivity(intent2)
+            }else{
+                Toast.makeText(this, "Datos Incorrectos", Toast.LENGTH_LONG).show()
+            }
+
+
+
+            /*if(userDao.findOne(logInUserName,logInUserPass)?.equals(null)!!){
                 Toast.makeText(this, "Datos Incorrectos", Toast.LENGTH_LONG).show()
 
             }else{
                 val intent2 = Intent(this,Menu::class.java)
                 startActivity(intent2)
-            }
+            }*/
 
-
-
-
-            //if (userCheck.findOne()){            }
         }
 
         val reg = findViewById<Button>(R.id.btn_activity_main_reg)
         reg.setOnClickListener {
-            val intent = Intent(this,SignUp::class.java)
+            val intent = Intent(this,LogIn::class.java)
             startActivity(intent)
         }
 

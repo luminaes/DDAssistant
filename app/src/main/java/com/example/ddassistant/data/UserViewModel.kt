@@ -24,10 +24,10 @@ class UserViewModel(application: Application) :AndroidViewModel(application) {
             repository.addUser(user)
         }
     }
-
     fun findOne(user: String, pass: String){
         viewModelScope.launch (Dispatchers.IO){
             repository.findOne(user,pass)
+            return@launch
         }
     }
 

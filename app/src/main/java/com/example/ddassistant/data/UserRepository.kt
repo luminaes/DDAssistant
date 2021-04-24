@@ -10,8 +10,9 @@ class UserRepository (private var userDao: UserDao) {
         userDao.addUser(user)
     }
 
-    suspend fun findOne(user: String, pass: String){
-        userDao.findOne(user, pass)
+    suspend fun findOne(user: String, pass: String): User? {
+        //userDao.findOne(user, pass)
+        return(userDao.findOne(user,pass))
     }
 
 
