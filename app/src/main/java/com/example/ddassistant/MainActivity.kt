@@ -31,6 +31,8 @@ class MainActivity : AppCompatActivity() {
 
             if(user!=null){
                 val intent2 = Intent(this,Menu::class.java)
+                userEditText.setText("")
+                passEditText.setText("")
                 startActivity(intent2)
             }else{
                 Toast.makeText(this, "Datos Incorrectos", Toast.LENGTH_LONG).show()
