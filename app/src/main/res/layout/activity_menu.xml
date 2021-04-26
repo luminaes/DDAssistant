@@ -4,53 +4,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/blackmarble"
     tools:context=".Menu">
+    //android:background="@drawable/marblebackground.jpg"
+
 
     <Button
         android:id="@+id/btn_activity_menu_media"
-        android:layout_width="148dp"
-        android:layout_height="146dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:background="@drawable/button_bg_rounded_corners"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/blackmarble"
         android:padding="15dp"
         android:text="Media"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_activity_menu_capture" />
 
     <Button
         android:id="@+id/btn_activity_menu_record"
-        android:layout_width="148dp"
-        android:layout_height="146dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/button_bg_rounded_corners"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_marginTop="276dp"
+        android:background="@drawable/marblebackground"
         android:padding="15dp"
-        android:text="Grabar"
-        app:layout_constraintBottom_toTopOf="@+id/btn_activity_menu_media"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:text="@string/grabar"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_activity_menu_capture"
-        android:layout_width="148dp"
-        android:layout_height="146dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/button_bg_rounded_corners"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/blackmarble"
         android:padding="15dp"
         android:text="Foto"
-        app:layout_constraintBottom_toTopOf="@+id/btn_activity_menu_send_loation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_activity_menu_record" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_activity_menu_record" />
 
     <Button
         android:id="@+id/btn_activity_menu_send_loation"
-        android:layout_width="148dp"
-        android:layout_height="146dp"
-        android:background="@drawable/button_bg_rounded_corners"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/blackmarble"
         android:padding="15dp"
         android:text="Localizacion"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_activity_menu_media" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_activity_menu_media" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

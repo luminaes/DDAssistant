@@ -12,4 +12,5 @@
     <string name="volver">Volver</string>
     <string name="ingrese_sus_datos">Ingrese sus Datos</string>
     <string name="grabar_audio">Grabar Audio</string>
+    <string name="grabar">Grabar</string>
 </resources>
