@@ -16,4 +16,7 @@
     <string name="tomar_foto">Tomar Foto</string>
     <string name="media">Media</string>
     <string name="localizacion">Localizacion</string>
+    <string name="Detener" />
+    <string name="detener">Detener</string>
+    <string name="resumir">Resumir</string>
 </resources>
