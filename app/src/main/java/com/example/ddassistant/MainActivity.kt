@@ -16,6 +16,7 @@ import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
     private lateinit var userDao: UserDao
+    private lateinit var userEditText: EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         userDao= AppDatabase.getDatabase(this).UserDao()
@@ -25,26 +26,33 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         userDao= AppDatabase.getDatabase(this).UserDao()
-        val userEditText=findViewById<EditText>(R.id.txt_activity_main_name)
+        userDao.readAlldata().observe(this, Observer { usuarios -> usuarios.forEach { println(it) } })
+        userEditText = findViewById<EditText>(R.id.txt_activity_main_name)
         val passEditText=findViewById<EditText>(R.id.txt_activity_main_pass)
         val loginButton = findViewById<Button>(R.id.btn_activity_main_log)// cambiar login por login button
-        var logInUserName = userEditText.text.toString()
-        val logInUserPass = passEditText.text.toString()
+
 
         loginButton.setOnClickListener {
+            var logInUserName = userEditText.text.toString()
+            val logInUserPass = passEditText.text.toString()
             userDao.findOne(logInUserName, logInUserPass).observe(this, Observer
-            { checkUserName ->logInUserName=checkUserName.username})
+            { UserName ->callBackLogin(UserName)})
 
-            if(logInUserName !=null){
-                val intent2 = Intent(this,Menu::class.java)
-                startActivity(intent2)
-            }
+
         }
 
         val reg = findViewById<Button>(R.id.btn_activity_main_reg)
         reg.setOnClickListener {
             val intent = Intent(this,SignUp::class.java)
             startActivity(intent)
+        }
+
+    }
+
+    private fun callBackLogin(userName: User?) {
+        if(userName !=null){
+            val intent2 = Intent(this,Menu::class.java)
+            startActivity(intent2)
         }
 
     }
