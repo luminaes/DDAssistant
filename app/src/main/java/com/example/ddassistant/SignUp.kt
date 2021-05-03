@@ -3,6 +3,7 @@ package com.example.ddassistant
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.Gravity
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.ddassistant.data.User
 import com.example.ddassistant.data.UserViewModel
 import java.util.List.of
+import java.util.regex.Pattern
 
 class SignUp : AppCompatActivity() {
 
@@ -42,11 +44,20 @@ class SignUp : AppCompatActivity() {
         val userEmail = emalEditText.text.toString()
 
         if (imputCheck(userName, userPass, userEmail)){
-            //crear objeto usuario
-            val user = User(0, userName, userPass, userEmail)
-            //añadir a la base
-            mUserViewModel.addUser(user)
-            Toast.makeText(this, "Registro exitoso", Toast.LENGTH_LONG).show()
+            if(checkLength(userName, userPass)){
+                if(checkEmail(userEmail)){
+                    //crear objeto usuario
+                    val user = User(0, userName, userPass, userEmail)
+                    //añadir a la base
+                    mUserViewModel.addUser(user)
+                    Toast.makeText(this, "Registro exitoso", Toast.LENGTH_LONG).show()
+                }else{
+                    Toast.makeText(this, "Correo Invalido", Toast.LENGTH_LONG).show()
+                }
+
+            }else{
+                Toast.makeText(this, "Usuario y contraseña deben tener un minimo de 6 caracteres", Toast.LENGTH_LONG).show()
+            }
         }else{
             Toast.makeText(this, "Campos Incompletos", Toast.LENGTH_LONG).show()
         }
@@ -54,5 +65,13 @@ class SignUp : AppCompatActivity() {
     }
     private fun imputCheck(userName: String, userPass: String, userEmail: String):Boolean{
         return !(TextUtils.isEmpty(userName)&&TextUtils.isEmpty(userPass) && TextUtils.isEmpty(userEmail))
+    }
+
+    private fun checkLength(userName: String, userPass: String):Boolean{
+        return !(userName.length < 6 && userPass.length < 6)
+    }
+
+    private fun checkEmail(userEmail: String): Boolean {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()
     }
 }

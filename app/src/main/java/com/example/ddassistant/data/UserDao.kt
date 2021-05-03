@@ -12,8 +12,9 @@ interface UserDao {
     suspend fun addUser(user : User)
     //LogIN
     @Query(value = "SELECT * FROM user_table where username = :user and pass = :pass")
+    fun findOne(user: String, pass: String): LiveData<User>  //live data para consulta asincronica
     //fun findOne(user: String, pass: String): User?
-    fun findOne(user: String, pass: String): LiveData<User?>?  //live data para consulta asincronica
+
 
     @Query(value = "SELECT * FROM user_table ORDER BY id ASC")
     fun readAlldata(): LiveData<List<User>>

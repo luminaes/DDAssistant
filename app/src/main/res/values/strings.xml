@@ -13,4 +13,7 @@
     <string name="ingrese_sus_datos">Ingrese sus Datos</string>
     <string name="grabar_audio">Grabar Audio</string>
     <string name="grabar">Grabar</string>
+    <string name="tomar_foto">Tomar Foto</string>
+    <string name="media">Media</string>
+    <string name="localizacion">Localizacion</string>
 </resources>
