@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ddassistant">
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_ddicon"
@@ -8,7 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".data.Record"></activity>
+        <activity android:name=".SendLocation"></activity>
+        <activity android:name=".Media" />
+        <activity android:name=".TakePhoto" />
+        <activity android:name=".data.Record" />
         <activity android:name=".LogIn" />
         <activity android:name=".Menu" />
         <activity android:name=".SignUp" />
@@ -20,6 +27,5 @@
             </intent-filter>
         </activity>
     </application>
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
 </manifest>

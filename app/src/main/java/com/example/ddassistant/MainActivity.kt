@@ -26,7 +26,8 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         userDao= AppDatabase.getDatabase(this).UserDao()
-        userDao.readAlldata().observe(this, Observer { usuarios -> usuarios.forEach { println(it) } })
+        //data de todos los usuarios por consola
+        //userDao.readAlldata().observe(this, Observer {usuarios -> usuarios.forEach{println(it) }})
         userEditText = findViewById<EditText>(R.id.txt_activity_main_name)
         val passEditText=findViewById<EditText>(R.id.txt_activity_main_pass)
         val loginButton = findViewById<Button>(R.id.btn_activity_main_log)// cambiar login por login button
@@ -37,8 +38,6 @@ class MainActivity : AppCompatActivity() {
             val logInUserPass = passEditText.text.toString()
             userDao.findOne(logInUserName, logInUserPass).observe(this, Observer
             { UserName ->callBackLogin(UserName)})
-
-
         }
 
         val reg = findViewById<Button>(R.id.btn_activity_main_reg)
@@ -57,18 +56,5 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
-    private fun checkUser(): UserDao {
-
-        //reg.isEnabled=false
-        lateinit var userDao: UserDao
-        //var userDao = AppDatabase.getDatabase(application).UserDao()
-        userDao=AppDatabase.getDatabase(this).UserDao()
-        /*userDao.findOne(logInUserName,logInUserPass)?.observe(this) {
-            reg.isEnabled=true
-        }*/
-        return userDao
-
-    }
 
 }
