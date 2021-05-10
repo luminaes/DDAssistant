@@ -1,4 +1,4 @@
-package com.example.ddassistant.data
+package com.example.ddassistant
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -14,7 +14,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.example.ddassistant.R
+import java.io.File
 import java.io.IOException
 import java.time.LocalDateTime
 
@@ -50,14 +50,25 @@ class Record : AppCompatActivity() {
 
         if(isExternalStorageWritable())
         {
+            val extStorageDirectory = Environment.getExternalStorageDirectory().toString()
+            val audios = File(extStorageDirectory)
+            if (!audios.exists())
+                audios.mkdirs()
             return this.getExternalFilesDir(null) !!.absolutePath + "/$date.aac"
-
         }
         else
         {
             // almacenamiento interno
-            return  this.filesDir!!.absolutePath + "/$date.aac"
+            val folder = File(filesDir.toString() + "audios")
+            if (!folder.exists()) {
+                folder.mkdir()
+            }
+            return  this.filesDir!!.absolutePath + "/audios/$date.aac"
         }
+
+    }
+
+    private fun makeDir(){
 
     }
 
@@ -130,7 +141,7 @@ class Record : AppCompatActivity() {
         recordingStopped = false
     }
 
-     fun isExternalStorageWritable(): Boolean {
+     private fun isExternalStorageWritable(): Boolean {
          val isSDPresent = Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED
          val isSDSupportedDevice = Environment.isExternalStorageRemovable()
          return isSDSupportedDevice && isSDPresent

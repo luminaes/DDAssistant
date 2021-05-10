@@ -15,7 +15,7 @@
         <activity android:name=".SendLocation"></activity>
         <activity android:name=".Media" />
         <activity android:name=".TakePhoto" />
-        <activity android:name=".data.Record" />
+        <activity android:name=".Record" />
         <activity android:name=".LogIn" />
         <activity android:name=".Menu" />
         <activity android:name=".SignUp" />

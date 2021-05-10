@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/blackmarble"
     tools:context=".Menu">
-    //android:background="@drawable/marblebackground.jpg"
 
 
     <Button

@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import com.example.ddassistant.data.Record
 
 class Menu : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,7 +17,7 @@ class Menu : AppCompatActivity() {
         //record
         val recordButton = findViewById<Button>(R.id.btn_activity_menu_record)
         recordButton.setOnClickListener {
-            val intent = Intent(this,Record::class.java)
+            val intent = Intent(this, Record::class.java)
             startActivity(intent)
         }
         //take photo
