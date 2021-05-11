@@ -32,6 +32,19 @@ class Record : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onStart() {
         super.onStart()
+
+        val extStorageDirectory = this.getExternalFilesDir(null) !!.absolutePath + "/audios"
+        val audios = File(extStorageDirectory)
+        if (!audios.exists())
+            audios.mkdirs()
+
+        val folder = File(filesDir.toString() + "audios")
+        if (!folder.exists()) {
+            folder.mkdir()
+        }
+
+
+
         val recordButton = findViewById<Button>(R.id.btn_activity_record_rec)
         val puaseResumeButton = findViewById<Button>(R.id.btn_activity_record_pause_resume)
         val stopButton = findViewById<Button>(R.id.btn_activity_record_stop)
@@ -46,31 +59,15 @@ class Record : AppCompatActivity() {
         }
 
     }
-    private fun pathOfAudio(date: LocalDateTime): String {
-
-        if(isExternalStorageWritable())
-        {
-            val extStorageDirectory = Environment.getExternalStorageDirectory().toString()
-            val audios = File(extStorageDirectory)
-            if (!audios.exists())
-                audios.mkdirs()
-            return this.getExternalFilesDir(null) !!.absolutePath + "/$date.aac"
+    private fun pathOfAudio(date: String): String {
+        val folder= File(if (isExternalStorageWritable()) this.getExternalFilesDir(null)!!.absolutePath else filesDir.toString() + "/audios")
+        if(!folder.exists()){
+            folder.mkdir()
         }
-        else
-        {
-            // almacenamiento interno
-            val folder = File(filesDir.toString() + "audios")
-            if (!folder.exists()) {
-                folder.mkdir()
-            }
-            return  this.filesDir!!.absolutePath + "/audios/$date.aac"
-        }
-
+        return  folder.absolutePath +"/$date.mp3"
     }
 
-    private fun makeDir(){
 
-    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setPermAndEmb(){ //permisos y establecer entorno de ejecucion
@@ -79,8 +76,8 @@ class Record : AppCompatActivity() {
                         Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             val permissions = arrayOf(android.Manifest.permission.RECORD_AUDIO, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE)
             ActivityCompat.requestPermissions(this, permissions,0)
-            val dateTime = LocalDateTime.now()
-            output = pathOfAudio(dateTime )
+           /* //val dateTime = LocalDateTime.now()
+            //output = pathOfAudio(dateTime )*/
             mediaRecorder = MediaRecorder()//creo instancia de media record
             mediaRecorder?.setAudioSource(MediaRecorder.AudioSource.MIC)// especifico fuente del audio
             mediaRecorder?.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)//fotmato
@@ -93,7 +90,19 @@ class Record : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun startRecording() {
         try {
-            setPermAndEmb()
+            val permissions = arrayOf(android.Manifest.permission.RECORD_AUDIO, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE)
+            ActivityCompat.requestPermissions(this, permissions,0)
+            var dateTime = LocalDateTime.now().toString()
+            if (dateTime.contains(":")){
+                dateTime = dateTime.replace(":", "")
+            }
+            output = pathOfAudio(dateTime)
+            mediaRecorder = MediaRecorder()//creo instancia de media record
+            mediaRecorder?.setAudioSource(MediaRecorder.AudioSource.MIC)// especifico fuente del audio
+            mediaRecorder?.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)//fotmato
+            mediaRecorder?.setAudioEncoder(MediaRecorder.AudioEncoder.AAC)//compresion
+            mediaRecorder?.setOutputFile(output)//salida
+
             mediaRecorder?.prepare()
             mediaRecorder?.start()
             state = true
