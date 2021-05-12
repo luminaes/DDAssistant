@@ -11,7 +11,7 @@
         android:id="@+id/btn_activity_record_pause_resume"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/resumir"
+        android:text="@string/pausar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

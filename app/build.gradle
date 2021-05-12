@@ -14,8 +14,8 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        android.defaultConfig.vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
@@ -61,7 +61,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.2.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.2.2'
 
-
-
+    //MediaPlayer
+    implementation 'com.google.android.material:material:1.1.0'
 
 }

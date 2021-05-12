@@ -119,8 +119,9 @@ class Record : AppCompatActivity() {
             mediaRecorder?.stop()
             mediaRecorder?.release()
             state = false
-        }else{
             Toast.makeText(this, "Se finalizo la Grabacion", Toast.LENGTH_SHORT).show()
+        }else{
+            Toast.makeText(this, "No te encontras Grabando", Toast.LENGTH_SHORT).show()
         }
     }
 

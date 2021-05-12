@@ -29,7 +29,7 @@ class Menu : AppCompatActivity() {
         //media
         val mediaButton = findViewById<Button>(R.id.btn_activity_menu_media)
         mediaButton.setOnClickListener {
-            val intent3 = Intent(this,Media::class.java)
+            val intent3 = Intent(this,AudioPlayer::class.java)
             startActivity(intent3)
         }
         //send location
