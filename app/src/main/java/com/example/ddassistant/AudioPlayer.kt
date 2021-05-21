@@ -41,7 +41,7 @@ class AudioPlayer : AppCompatActivity() {
         val stopButton  =findViewById<FloatingActionButton>(R.id.flo_btn_activity_audio_player_stop)
         playButton.scaleType = ImageView.ScaleType.CENTER
         pauseButton.scaleType = ImageView.ScaleType.CENTER
-        stopButton.setScaleType(ImageView.ScaleType.CENTER)
+        stopButton.scaleType = ImageView.ScaleType.CENTER
         val seekbar = findViewById<SeekBar>(R.id.ske_activity_audio_player)
         val id = currentSong[0]
         playButton.setOnClickListener{
