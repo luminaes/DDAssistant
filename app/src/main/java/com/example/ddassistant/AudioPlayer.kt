@@ -1,5 +1,6 @@
 package com.example.ddassistant
 
+import android.annotation.SuppressLint
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -16,6 +17,7 @@ import java.util.Collections.max
 class AudioPlayer : AppCompatActivity() {
     private var mp: MediaPlayer? =null
     private var currentSong = mutableListOf(R.raw.push)
+    //private var currentSong = mutableListOf("/data/user/0/com.example.ddassistant/files/audios/push.mp3")
     private lateinit var seekBar: SeekBar
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +29,9 @@ class AudioPlayer : AppCompatActivity() {
         pauseButton.scaleType = ImageView.ScaleType.CENTER
         stopButton.setScaleType(ImageView.ScaleType.CENTER)*/
         //controlSound(currentSong[0])
+
+
+
     }
 
     override fun onStart() {
@@ -65,8 +70,6 @@ class AudioPlayer : AppCompatActivity() {
 
 
     }
-
-
 
     private fun controlSound (id:Int){
         val playButton  =findViewById<FloatingActionButton>(R.id.flo_btn_activity_audio_player_play)

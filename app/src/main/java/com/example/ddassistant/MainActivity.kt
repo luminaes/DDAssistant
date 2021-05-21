@@ -17,6 +17,7 @@ import org.w3c.dom.Text
 class MainActivity : AppCompatActivity() {
     private lateinit var userDao: UserDao
     private lateinit var userEditText: EditText
+   private lateinit var passEditText: EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         userDao= AppDatabase.getDatabase(this).UserDao()
@@ -29,8 +30,8 @@ class MainActivity : AppCompatActivity() {
         //data de todos los usuarios por consola
         //userDao.readAlldata().observe(this, Observer {usuarios -> usuarios.forEach{println(it) }})
         userEditText = findViewById<EditText>(R.id.txt_activity_main_name)
-        val passEditText=findViewById<EditText>(R.id.txt_activity_main_pass)
-        val loginButton = findViewById<Button>(R.id.btn_activity_main_log)// cambiar login por login button
+        passEditText = findViewById<EditText>(R.id.txt_activity_main_pass)
+        val loginButton = findViewById<Button>(R.id.btn_activity_main_log)
 
 
         loginButton.setOnClickListener {
@@ -50,9 +51,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun callBackLogin(userName: User?) {
         if(userName !=null){
+            Toast.makeText(this, "LogIn Exitoso", Toast.LENGTH_SHORT).show()
             val intent2 = Intent(this,Menu::class.java)
             startActivity(intent2)
-        }
+        }else Toast.makeText(this, "Datos Incorrectos!", Toast.LENGTH_SHORT).show()
 
     }
 
