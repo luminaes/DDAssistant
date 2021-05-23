@@ -11,11 +11,14 @@
         android:id="@+id/flo_btn_activity_audio_player_stop"
         android:layout_width="87dp"
         android:layout_height="95dp"
-        android:layout_marginStart="320dp"
-        android:layout_marginLeft="320dp"
+        android:layout_marginStart="308dp"
+        android:layout_marginLeft="308dp"
         android:layout_marginTop="56dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:clickable="true"
         app:backgroundTint="@color/purple_700"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
         app:srcCompat="@drawable/ic_stop_black" />
@@ -57,16 +60,16 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/flo_btn_activity_audio_player_play"
-        android:layout_width="107dp"
-        android:layout_height="89dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
+        android:layout_width="87dp"
+        android:layout_height="95dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="56dp"
         android:clickable="true"
         app:backgroundTint="@color/purple_500"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:srcCompat="@drawable/ic_play_arrow_black"/>
+        app:srcCompat="@drawable/ic_play_arrow_black" />
 
     <SeekBar
         android:id="@+id/seekBar"

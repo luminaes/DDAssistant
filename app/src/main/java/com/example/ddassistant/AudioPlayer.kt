@@ -10,6 +10,7 @@ import android.util.Log
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.SeekBar
+import android.widget.Toast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.lang.Exception
 import java.util.Collections.max
@@ -17,21 +18,12 @@ import java.util.Collections.max
 class AudioPlayer : AppCompatActivity() {
     private var mp: MediaPlayer? =null
     private var currentSong = mutableListOf(R.raw.push)
-    //private var currentSong = mutableListOf("/data/user/0/com.example.ddassistant/files/audios/push.mp3")
+   // private var currentSong = mutableListOf("/data/user/0/com.example.ddassistant/files/audios/push.mp3")
     private lateinit var seekBar: SeekBar
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_audio_player)
-        /*val playButton  =findViewById<FloatingActionButton>(R.id.flo_btn_activity_audio_player_play)
-        val pauseButton  =findViewById<FloatingActionButton>(R.id.flo_btn_activity_audio_player_play)
-        val stopButton  =findViewById<FloatingActionButton>(R.id.flo_btn_activity_audio_player_play)
-        playButton.scaleType = ImageView.ScaleType.CENTER
-        pauseButton.scaleType = ImageView.ScaleType.CENTER
-        stopButton.setScaleType(ImageView.ScaleType.CENTER)*/
         //controlSound(currentSong[0])
-
-
-
     }
 
     override fun onStart() {
@@ -46,6 +38,8 @@ class AudioPlayer : AppCompatActivity() {
         val id = currentSong[0]
         playButton.setOnClickListener{
             if (mp== null ){
+                val idres = resources.getIdentifier("push.mp3", "$filesDir/audios",packageName)
+                //mp= MediaPlayer.create(this,resources.getIdentifier("push.mp3",filesDir.toString() + "/audios",packageName))
                 mp= MediaPlayer.create(this,id)
                 Log.d("AudioPlayer","ID: ${mp!!.audioSessionId} seconds")
                 //initialiseSeekBar()
@@ -55,9 +49,10 @@ class AudioPlayer : AppCompatActivity() {
         }
 
         pauseButton.setOnClickListener{
-            if(mp !==null) mp?.pause()
-            Log.d("AudioPlayer","Pause at: ${mp!!.currentPosition/1000} seconds")
-
+            if(mp !==null){
+                mp?.pause()
+                Log.d("AudioPlayer","Pause at: ${mp!!.currentPosition/1000} seconds")
+            }else Toast.makeText(this, "No Se Esta Reproduciendo Audio", Toast.LENGTH_SHORT).show()
         }
         stopButton.setOnClickListener{
             if(mp !==null){
