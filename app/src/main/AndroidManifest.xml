@@ -14,7 +14,7 @@
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".SendLocation"></activity>
         <activity android:name=".AudioPlayer" />
-        <activity android:name=".TakePhoto" />
+        <activity android:name=".Calendar" />
         <activity android:name=".Record" />
         <activity android:name=".LogIn" />
         <activity android:name=".Menu" />

@@ -1,6 +1,5 @@
 package com.example.ddassistant
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -24,7 +23,7 @@ class Menu : AppCompatActivity() {
         //take photo
         val takePhotoButton = findViewById<Button>(R.id.btn_activity_menu_take_photo)
         takePhotoButton.setOnClickListener {
-            val intent2 = Intent(this,TakePhoto::class.java)
+            val intent2 = Intent(this,Calendar::class.java)
             startActivity(intent2)
         }
         //media
