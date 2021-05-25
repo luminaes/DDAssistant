@@ -21,4 +21,10 @@
     <string name="resumir">Resumir</string>
     <string name="pausar">Pausar</string>
     <string name="seleccionar_fecha">Seleccionar Fecha</string>
+    <string name="nombre_del_evento">Nombre del evento</string>
+    <string name="titulo">Titulo</string>
+    <string name="lugar">Lugar</string>
+    <string name="descripcion">Descripcion</string>
+    <string name="calendario">CALENDARIO</string>
+    <string name="privado">Privado</string>
 </resources>
