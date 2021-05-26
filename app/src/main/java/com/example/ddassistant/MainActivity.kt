@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.content.Intent
+import android.os.Message
 import android.os.PersistableBundle
 import android.widget.EditText
 import android.widget.Toast
@@ -52,6 +53,8 @@ class MainActivity : AppCompatActivity() {
         if(userName !=null){
             Toast.makeText(this, "LogIn Exitoso", Toast.LENGTH_SHORT).show()
             val intent2 = Intent(this,Menu::class.java)
+            var logInUserName = userEditText.text.toString()
+            intent2.putExtra("name_extra",logInUserName)
             startActivity(intent2)
             cleanEdittext()
         }else Toast.makeText(this, "Datos Incorrectos!", Toast.LENGTH_SHORT).show()

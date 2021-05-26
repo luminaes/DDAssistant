@@ -18,7 +18,7 @@ class Calendar : AppCompatActivity() {
     var yearInt :Int = 0
     var monthInt :Int =0
     var dayInt :Int =0
-    var hourInt :Int =0
+    var hourInt :Int =12
     var minuteInt :Int =0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,12 +48,14 @@ class Calendar : AppCompatActivity() {
                 monthInt=month
                 dayInt= dayOfMonth
             },myyear,mymonth,day)
+            datePickerDialog.datePicker.minDate = System.currentTimeMillis() - 1000
             datePickerDialog.show()
         }
 
         timeSelect.setOnClickListener {
             val timePickerDialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
-                timeSelect.text = "Hora " + hourOfDay +":"+ minute
+                if(minute <10 ){timeSelect.text = "Hora " + hourOfDay +":0"+ minute
+                }else timeSelect.text = "Hora " + hourOfDay +":"+ minute
                 hourInt = hourOfDay
                 minuteInt =minute
             }, myhour, myminute, false)
@@ -76,6 +78,7 @@ class Calendar : AppCompatActivity() {
             val calIntent = Intent(Intent.ACTION_INSERT)
             val switchPrivate = findViewById<Switch>(R.id.switch_activity_calendar_private)
             val switchWeekly = findViewById<Switch>(R.id.switch_activity_calendar_weekly)
+            val switchAllDay = findViewById<Switch>(R.id.switch_activity_calendar_all_day)
 
             calIntent.type = "vnd.android.cursor.item/event"
             calIntent.putExtra(Events.TITLE, titleText)
@@ -85,14 +88,17 @@ class Calendar : AppCompatActivity() {
             if (switchPrivate.isChecked){ calIntent.putExtra(Events.ACCESS_LEVEL, Events.ACCESS_PRIVATE)
             } else calIntent.putExtra(Events.ACCESS_LEVEL, Events.ACCESS_PUBLIC)
             //repeticion
-
-            calIntent.putExtra(Events.RRULE,"FREQ=WEEKLY;COUNT=12") // semanalmente 3 meses
+            // semanalmente 3 meses
+           if(switchWeekly.isChecked)calIntent.putExtra(Events.RRULE,"FREQ=WEEKLY;COUNT=12")
 
             val calDate = GregorianCalendar(yearInt, monthInt, dayInt,hourInt,minuteInt)
-            calIntent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, false)
+            //todo el dia
+            if (switchAllDay.isChecked){ calIntent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true)
+            }else calIntent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, false)
+
             calIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, calDate.timeInMillis)
-            calIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, calDate.timeInMillis)
-            //
+            //calIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, calDate.timeInMillis)
+
             startActivity(calIntent)
         }
     }

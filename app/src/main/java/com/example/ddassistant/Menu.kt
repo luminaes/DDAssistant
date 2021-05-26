@@ -1,19 +1,22 @@
 package com.example.ddassistant
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 
 class Menu : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
-
-
     }
     override fun onStart() {
         super.onStart()
+
+        var profileName=intent.getStringExtra("name_extra")
+        val userText =findViewById<TextView>(R.id.txt_activity_menu_user)
+        userText.text= "Bienvenido" + "$profileName"
         //record
         val recordButton = findViewById<Button>(R.id.btn_activity_menu_record)
         recordButton.setOnClickListener {
