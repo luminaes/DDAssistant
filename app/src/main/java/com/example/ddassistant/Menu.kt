@@ -14,13 +14,16 @@ class Menu : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        var profileName=intent.getStringExtra("name_extra")
-        val userText =findViewById<TextView>(R.id.txt_activity_menu_user)
-        userText.text= "Bienvenido" + "$profileName"
+        //var profileName=intent.getStringExtra("name_extra")
+        var userNameExtra=intent.getStringExtra("userNameExtra")
+        val userNameText =findViewById<TextView>(R.id.txt_activity_menu_user)
+        userNameText.text= "Bienvenido " + "$userNameExtra"
+
         //record
         val recordButton = findViewById<Button>(R.id.btn_activity_menu_record)
         recordButton.setOnClickListener {
             val intent = Intent(this, Record::class.java)
+            intent.putExtra("userNameExtra",userNameExtra)
             startActivity(intent)
         }
         //take photo
@@ -33,6 +36,7 @@ class Menu : AppCompatActivity() {
         val mediaButton = findViewById<Button>(R.id.btn_activity_menu_media)
         mediaButton.setOnClickListener {
             val intent3 = Intent(this,AudioPlayer::class.java)
+            intent3.putExtra("userNameExtra",userNameExtra)
             startActivity(intent3)
         }
         //send location

@@ -28,6 +28,7 @@ class AudioPlayer : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        var userNameExtra=intent.getStringExtra("userNameExtra")
         val playButton  =findViewById<FloatingActionButton>(R.id.flo_btn_activity_audio_player_play)
         val pauseButton  =findViewById<FloatingActionButton>(R.id.flo_btn_activity_audio_player_pause)
         val stopButton  =findViewById<FloatingActionButton>(R.id.flo_btn_activity_audio_player_stop)

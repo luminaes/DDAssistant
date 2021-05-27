@@ -32,16 +32,17 @@ class Record : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onStart() {
         super.onStart()
+        var userNameExtra=intent.getStringExtra("userNameExtra")
 
-        val extStorageDirectory = this.getExternalFilesDir(null) !!.absolutePath + "/audios"
+       /* val extStorageDirectory = this.getExternalFilesDir(null) !!.absolutePath + "/audios"
         val audios = File(extStorageDirectory)
         if (!audios.exists())
             audios.mkdirs()
 
-        val folder = File(filesDir.toString() + "audios")
+        val folder = File(filesDir.toString() + "/audios")
         if (!folder.exists()) {
             folder.mkdir()
-        }
+        }*/
 
 
 
@@ -60,7 +61,8 @@ class Record : AppCompatActivity() {
 
     }
     private fun pathOfAudio(date: String): String {
-        val folder= File(if (isExternalStorageWritable()) this.getExternalFilesDir(null)!!.absolutePath else filesDir.toString() + "/audios")
+        var userNameExtra=intent.getStringExtra("userNameExtra")
+        val folder= File(if (isExternalStorageWritable()) this.getExternalFilesDir(null)!!.absolutePath + "/audios/$userNameExtra" else filesDir.toString() + "/audios/$userNameExtra")
         if(!folder.exists()){
             folder.mkdir()
         }

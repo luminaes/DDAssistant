@@ -53,8 +53,9 @@ class MainActivity : AppCompatActivity() {
         if(userName !=null){
             Toast.makeText(this, "LogIn Exitoso", Toast.LENGTH_SHORT).show()
             val intent2 = Intent(this,Menu::class.java)
-            var logInUserName = userEditText.text.toString()
-            intent2.putExtra("name_extra",logInUserName)
+            //var logInUserName = userEditText.text.toString()
+            //intent2.putExtra("name_extra",logInUserName)
+            intent2.putExtra("userNameExtra",userName.username )
             startActivity(intent2)
             cleanEdittext()
         }else Toast.makeText(this, "Datos Incorrectos!", Toast.LENGTH_SHORT).show()
