@@ -34,7 +34,8 @@ class Record : AppCompatActivity() {
         super.onStart()
         var userNameExtra=intent.getStringExtra("userNameExtra")
 
-       /* val extStorageDirectory = this.getExternalFilesDir(null) !!.absolutePath + "/audios"
+        /*
+        val extStorageDirectory = this.getExternalFilesDir(null) !!.absolutePath + "/audios"
         val audios = File(extStorageDirectory)
         if (!audios.exists())
             audios.mkdirs()
@@ -62,9 +63,9 @@ class Record : AppCompatActivity() {
     }
     private fun pathOfAudio(date: String): String {
         var userNameExtra=intent.getStringExtra("userNameExtra")
-        val folder= File(if (isExternalStorageWritable()) this.getExternalFilesDir(null)!!.absolutePath + "/audios/$userNameExtra" else filesDir.toString() + "/audios/$userNameExtra")
+        val folder= File(if (isExternalStorageWritable()) this.getExternalFilesDir(null)!!.absolutePath + "/audios/" +"$userNameExtra" else filesDir.toString() + "/audios/" +"$userNameExtra")
         if(!folder.exists()){
-            folder.mkdir()
+            folder.mkdirs()
         }
         return  folder.absolutePath +"/$date.mp3"
     }
@@ -95,9 +96,9 @@ class Record : AppCompatActivity() {
             val permissions = arrayOf(android.Manifest.permission.RECORD_AUDIO, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE)
             ActivityCompat.requestPermissions(this, permissions,0)
             var dateTime = LocalDateTime.now().toString()
-            if (dateTime.contains(":")){
+            /*if (dateTime.contains(":")){
                 dateTime = dateTime.replace(":", "")
-            }
+            }*/
             output = pathOfAudio(dateTime)
             mediaRecorder = MediaRecorder()//creo instancia de media record
             mediaRecorder?.setAudioSource(MediaRecorder.AudioSource.MIC)// especifico fuente del audio
@@ -123,7 +124,7 @@ class Record : AppCompatActivity() {
             state = false
             Toast.makeText(this, "Se finalizo la Grabacion", Toast.LENGTH_SHORT).show()
         }else{
-            Toast.makeText(this, "No te encontras Grabando", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "No hay Grabacion en curso", Toast.LENGTH_SHORT).show()
         }
     }
 

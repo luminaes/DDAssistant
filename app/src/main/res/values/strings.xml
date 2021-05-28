@@ -28,4 +28,6 @@
     <string name="calendario">CALENDARIO</string>
     <string name="privado">Privado</string>
     <string name="seleccionar_hora">Seleccionar Hora</string>
+    <string name="hora_de_inicio">Hora de Inicio</string>
+    <string name="fecha_de_inicio">Fecha de Inicio</string>
 </resources>
