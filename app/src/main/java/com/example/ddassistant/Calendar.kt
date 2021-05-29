@@ -16,13 +16,13 @@ class Calendar : AppCompatActivity() {
     var yearStart :Int = 0
     var monthStart :Int =0
     var dayStart :Int =0
-    var hourStart :Int =12
+    var hourStart :Int =0
     var minuteStart :Int =0
 
     var yearEnd :Int = 0
     var monthEnd :Int =0
     var dayEnd:Int =0
-    var hourEnd :Int=12
+    var hourEnd :Int=0
     var minuteEnd: Int=0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,51 +34,46 @@ class Calendar : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         val addEventButton = findViewById<Button>(R.id.btn_activity_calendar_add_event)
-        var dateSelectStart = findViewById<TextView>(R.id.txt_activity_calendar_select_start_date)
-        var dateSelectEnd = findViewById<TextView>(R.id.txt_activity_calendar_select_end_date)
-        val timeSelect =findViewById<TextView>(R.id.txt_activity_calendar_select_start_time)
+        val dateSelectStart = findViewById<TextView>(R.id.txt_activity_calendar_select_start_date)
+        val dateSelectEnd = findViewById<TextView>(R.id.txt_activity_calendar_select_end_date)
+        val timeSelectStart =findViewById<TextView>(R.id.txt_activity_calendar_select_start_time)
+        val timeSelectEnd =findViewById<TextView>(R.id.txt_activity_calendar_select_end_time)
         val allDaySwitch =findViewById<Switch>(R.id.switch_activity_calendar_all_day)
         //Cal val
 
-
-        //val myhour = cal.get(Calendar.HOUR)
-        //val myminute = cal.get(Calendar.MINUTE)
-
-
         dateSelectStart.setOnClickListener {
             pickDate(true)
-            /*val datePickerDialog = DatePickerDialog(this,DatePickerDialog.OnDateSetListener {view, year, month, dayOfMonth ->
-                dateSelect.text= "Fecha: "+ dayOfMonth + "/ " +(month+1) + "/ " + year
-                yearInt = year
-                monthInt=month
-                dayInt= dayOfMonth
-            },myyear,mymonth,day)
-            datePickerDialog.datePicker.minDate = System.currentTimeMillis() - 1000
-            datePickerDialog.show()*/
         }
         dateSelectEnd.setOnClickListener {
             pickDate(false)
         }
-
-
-        timeSelect.setOnClickListener {
-           /* val timePickerDialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
-                if(minute <10 ){timeSelect.text = "Hora " + hourOfDay +":0"+ minute
-                }else timeSelect.text = "Hora " + hourOfDay +":"+ minute
-                hourStart = hourOfDay
-                minuteStart =minute
-            }, myhour, myminute, false)
-            timePickerDialog.show()*/
+        timeSelectStart.setOnClickListener {
+            pickTime(true)
+        }
+        timeSelectEnd.setOnClickListener {
+            pickTime(false)
         }
 
         allDaySwitch.setOnClickListener {
-            if (allDaySwitch.isChecked){ timeSelect.text = ""
-                timeSelect.isClickable = false
-            }else{ timeSelect.text ="Seleccionar Hora"
-                timeSelect.isClickable = true
+            if (allDaySwitch.isChecked){
+                timeSelectStart.text = ""
+                timeSelectStart.isClickable = false
+                timeSelectEnd.text = ""
+                timeSelectEnd.isClickable = false
+                dateSelectEnd.text=""
+                dateSelectEnd.isClickable = false
+            }else{
+                timeSelectStart.text ="Hora de Inicio"
+                timeSelectStart.isClickable = true
+                timeSelectEnd.text ="Hora de Finalizacion"
+                timeSelectEnd.isClickable = true
+                dateSelectEnd.text="Fecha: + $dayEnd + / +$monthEnd + /  + $yearEnd"
+                dateSelectEnd.isClickable = true
+                yearEnd = 0
+                monthEnd= 0
+                dayEnd= 0
             }
         }
-
 
         addEventButton.setOnClickListener {
             val titleText = findViewById<EditText>(R.id.txt_activity_calendar_title).text.toString()
@@ -101,26 +96,37 @@ class Calendar : AppCompatActivity() {
 
             val calDate = GregorianCalendar(yearStart, monthStart, dayStart,hourStart,minuteStart)
             val calDateEnd =GregorianCalendar(yearEnd,monthEnd,dayEnd,hourEnd,minuteEnd)
-            //todo el dia
-            if (switchAllDay.isChecked){ calIntent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true)
-            }else calIntent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, false)
+            if ((calDate.timeInMillis)<=(calDateEnd.timeInMillis)){
+                calIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, calDate.timeInMillis)
+                //todo el dia
+                if (switchAllDay.isChecked){
+                    calIntent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true)
+                }else {
+                    calIntent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, false)
 
-            calIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, calDate.timeInMillis)
-            calIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, calDateEnd.timeInMillis)
+                    calIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, calDateEnd.timeInMillis)
+                }
+                startActivity(calIntent)
+            }else{
+                Toast.makeText(this, "Fecha de fin superior a inicio", Toast.LENGTH_SHORT).show()
+            }
 
-            startActivity(calIntent)
+
+
+
+
         }
     }
 
-    private fun pickDate(startEnd: Boolean){
+    private fun pickDate(startDate: Boolean){
         val cal =Calendar.getInstance()
         val year = cal.get(Calendar.YEAR)
         val month = cal.get(Calendar.MONTH)
         val day = cal.get(Calendar.DAY_OF_MONTH)
-        var dateSelectStart = findViewById<TextView>(R.id.txt_activity_calendar_select_start_date)
-        var dateSelectEnd = findViewById<TextView>(R.id.txt_activity_calendar_select_end_date)
+        val dateSelectStart = findViewById<TextView>(R.id.txt_activity_calendar_select_start_date)
+        val dateSelectEnd = findViewById<TextView>(R.id.txt_activity_calendar_select_end_date)
         val datePickerDialog = DatePickerDialog(this,DatePickerDialog.OnDateSetListener {view, year, month, dayOfMonth ->
-            if(startEnd){
+            if(startDate){
                 dateSelectStart.text= "Fecha: "+ dayOfMonth + "/ " +(month+1) + "/ " + year
                 yearStart = year
                 monthStart=month
@@ -128,17 +134,34 @@ class Calendar : AppCompatActivity() {
             }else{
                 dateSelectEnd.text= "Fecha: "+ dayOfMonth + "/ " +(month+1) + "/ " + year
                 yearEnd = year
-                monthEnd=month
+                monthEnd= month
                 dayEnd= dayOfMonth
             }
         },year,month,day)
-
         datePickerDialog.datePicker.minDate = System.currentTimeMillis() - 1000
         datePickerDialog.show()
-
-
     }
 
-
+    private fun pickTime(startDate: Boolean){
+        val cal =Calendar.getInstance()
+        val hour = cal.get(Calendar.HOUR)
+        val minute = cal.get(Calendar.MINUTE)
+        val timeSelectStart =findViewById<TextView>(R.id.txt_activity_calendar_select_start_time)
+        val timeSelectEnd =findViewById<TextView>(R.id.txt_activity_calendar_select_end_time)
+        val timePickerDialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
+            if (startDate){
+                if(minute <10 ){timeSelectStart.text = "Hora " + hourOfDay +":0"+ minute
+                }else timeSelectStart.text = "Hora " + hourOfDay +":"+ minute
+                hourStart = hourOfDay
+                minuteStart =minute
+            }else{
+                if(minute <10 ){timeSelectEnd.text = "Hora " + hourOfDay +":0"+ minute
+                }else timeSelectEnd.text = "Hora " + hourOfDay +":"+ minute
+                hourEnd = hourOfDay
+                minuteEnd =minute
+            }
+        }, hour, minute, false)
+        timePickerDialog.show()
+    }
 
 }
