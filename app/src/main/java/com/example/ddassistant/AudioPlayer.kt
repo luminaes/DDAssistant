@@ -35,7 +35,7 @@ class AudioPlayer : AppCompatActivity() {
         super.onStart()
         val songsList=audioListString()
         val position = 0
-        val lonOfList = audiosQuantity()
+        val longOfList = audiosQuantity()
         val playButton  =findViewById<FloatingActionButton>(R.id.flo_btn_activity_audio_player_play)
         val pauseButton  =findViewById<FloatingActionButton>(R.id.flo_btn_activity_audio_player_pause)
         val stopButton  =findViewById<FloatingActionButton>(R.id.flo_btn_activity_audio_player_stop)
