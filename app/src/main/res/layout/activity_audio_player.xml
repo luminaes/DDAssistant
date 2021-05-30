@@ -5,51 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/dragonsacalegreen"
+    android:clickable="false"
     tools:context=".AudioPlayer">
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/flo_btn_activity_audio_player_next"
-        android:layout_width="87dp"
-        android:layout_height="95dp"
-        android:layout_marginStart="236dp"
-        android:layout_marginLeft="236dp"
-        android:layout_marginTop="168dp"
-        android:background="@drawable/gold2"
-        android:clickable="true"
-        app:backgroundTint="@color/Goden"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:srcCompat="@drawable/ic_skip_next_black" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/flo_btn_activity_audio_player_prev"
-        android:layout_width="87dp"
-        android:layout_height="95dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginLeft="88dp"
-        android:layout_marginTop="168dp"
-        android:background="@drawable/gold2"
-        android:clickable="true"
-        app:backgroundTint="@color/Goden"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:srcCompat="@drawable/ic__skip_previous_black" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/flo_btn_activity_audio_player_stop"
-        android:layout_width="87dp"
-        android:layout_height="95dp"
-        android:layout_marginStart="308dp"
-        android:layout_marginLeft="308dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:clickable="true"
-        app:backgroundTint="@color/Goden"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:srcCompat="@drawable/ic_stop_black" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/flo_btn_activity_audio_player_pause"
@@ -57,12 +14,94 @@
         android:layout_height="95dp"
         android:layout_marginStart="160dp"
         android:layout_marginLeft="160dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="92dp"
         android:clickable="true"
         app:backgroundTint="@color/Goden"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
         app:srcCompat="@drawable/ic_pause_black" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/flo_btn_activity_audio_player_next"
+        android:layout_width="87dp"
+        android:layout_height="95dp"
+        android:layout_marginStart="236dp"
+        android:layout_marginLeft="236dp"
+        android:layout_marginTop="204dp"
+        android:background="@drawable/gold2"
+        android:clickable="true"
+        app:backgroundTint="@color/Goden"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:srcCompat="@drawable/ic_skip_next_black" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="343dp"
+        android:layout_height="13dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="140dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/flo_btn_activity_audio_player_pause" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/flo_btn_activity_audio_player_stop"
+        android:layout_width="87dp"
+        android:layout_height="95dp"
+        android:layout_marginStart="308dp"
+        android:layout_marginLeft="308dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:clickable="true"
+        app:backgroundTint="@color/Goden"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:srcCompat="@drawable/ic_stop_black" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/flo_btn_activity_audio_player_prev"
+        android:layout_width="87dp"
+        android:layout_height="95dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginLeft="88dp"
+        android:layout_marginTop="204dp"
+        android:background="@drawable/gold2"
+        android:clickable="true"
+        app:backgroundTint="@color/Goden"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:srcCompat="@drawable/ic__skip_previous_black" />
+
+    <TextView
+        android:id="@+id/txtStartTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/ske_activity_audio_player"
+        android:layout_marginStart="160dp"
+        android:layout_marginLeft="160dp"
+        android:layout_marginTop="184dp"
+        android:text="0 min, 0 sec"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/flo_btn_activity_audio_player_pause"
+        tools:ignore="MissingConstraints,UnknownId" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/flo_btn_activity_audio_player_play"
+        android:layout_width="87dp"
+        android:layout_height="95dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="92dp"
+        android:background="@drawable/gold2"
+        android:clickable="true"
+        app:backgroundTint="@color/Goden"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:srcCompat="@drawable/ic_play_arrow_black" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -76,38 +115,14 @@
 
 
     <TextView
-        android:id="@+id/txtStartTime"
+        android:id="@+id/txt_activity_audio_player_no_audios"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/ske_activity_audio_player"
-        android:layout_marginTop="208dp"
-        android:text="0 min, 0 sec"
-        app:layout_constraintTop_toBottomOf="@+id/flo_btn_activity_audio_player_pause"
-        tools:ignore="MissingConstraints,UnknownId"
-        tools:layout_editor_absoluteX="153dp" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/flo_btn_activity_audio_player_play"
-        android:layout_width="87dp"
-        android:layout_height="95dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="56dp"
-        android:background="@drawable/gold2"
-        android:clickable="true"
-        app:backgroundTint="@color/Goden"
+        android:layout_marginStart="204dp"
+        android:layout_marginLeft="204dp"
+        android:layout_marginTop="12dp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:srcCompat="@drawable/ic_play_arrow_black" />
-
-    <SeekBar
-        android:id="@+id/seekBar"
-        android:layout_width="343dp"
-        android:layout_height="13dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="136dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/flo_btn_activity_audio_player_pause" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

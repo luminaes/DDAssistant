@@ -39,14 +39,16 @@
 
     <Button
         android:id="@+id/btn_activity_menu_take_photo"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="90dp"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="11dp"
         android:background="@drawable/gold2"
         android:padding="15dp"
         android:text="@string/calendario"
         android:textColor="@color/black"
         android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_activity_menu_media"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_activity_menu_record" />
@@ -61,20 +63,24 @@
         android:text="@string/localizacion"
         android:textColor="@color/black"
         android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_activity_menu_media" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_activity_menu_media"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/txt_activity_menu_user"
         android:layout_width="268dp"
         android:layout_height="33dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="40dp"
         android:text="Bienvenido"
         android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_activity_menu_record"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.128"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.164" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

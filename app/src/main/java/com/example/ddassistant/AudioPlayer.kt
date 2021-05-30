@@ -9,10 +9,7 @@ import android.os.Environment
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.SeekBar
-import android.widget.Toast
+import android.widget.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.io.File
 import java.lang.Exception
@@ -34,8 +31,8 @@ class AudioPlayer : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         val songsList=audioListString()
-        val position = 0
-        val longOfList = audiosQuantity()
+        var position = 0
+        val longOfList = audiosQuantity()-1
         val playButton  =findViewById<FloatingActionButton>(R.id.flo_btn_activity_audio_player_play)
         val pauseButton  =findViewById<FloatingActionButton>(R.id.flo_btn_activity_audio_player_pause)
         val stopButton  =findViewById<FloatingActionButton>(R.id.flo_btn_activity_audio_player_stop)
@@ -46,18 +43,25 @@ class AudioPlayer : AppCompatActivity() {
         stopButton.scaleType = ImageView.ScaleType.CENTER
         nextButton.scaleType = ImageView.ScaleType.CENTER
         prevButton.scaleType = ImageView.ScaleType.CENTER
+        songsExist()
         var userNameExtra=intent.getStringExtra("userNameExtra")
         val seekbar = findViewById<SeekBar>(R.id.ske_activity_audio_player)
         val id = currentSong[0]
+
+
+
         playButton.setOnClickListener{
-            if (mp== null ){
-                mp= MediaPlayer.create(this, Uri.parse(songsList[0]))
-                // mp= MediaPlayer.create(this, Uri.parse(song.toString()) )
-                Log.d("AudioPlayer","ID: ${mp!!.audioSessionId} seconds")
-                //initialiseSeekBar()
+            if (audiosQuantity()<1){
+                if (mp== null ){
+                    mp= MediaPlayer.create(this, Uri.parse(songsList[position]))
+                    // mp= MediaPlayer.create(this, Uri.parse(song.toString()) )
+                    Log.d("AudioPlayer","ID: ${mp!!.audioSessionId} seconds")
+                    //initialiseSeekBar()
+                }
+                mp?.start()
+                Log.d("AudioPlayer","Duration: ${mp!!.duration/1000} seconds")
             }
-            mp?.start()
-            Log.d("AudioPlayer","Duration: ${mp!!.duration/1000} seconds")
+
         }
 
         pauseButton.setOnClickListener{
@@ -74,59 +78,52 @@ class AudioPlayer : AppCompatActivity() {
                 mp = null
             }
         }
-
         nextButton.setOnClickListener {
-
-        }
-    }
-
-    private fun controlSound (id:Int){
-        val playButton = findViewById<FloatingActionButton>(R.id.flo_btn_activity_audio_player_play)
-        val pauseButton = findViewById<FloatingActionButton>(R.id.flo_btn_activity_audio_player_play)
-        val stopButton = findViewById<FloatingActionButton>(R.id.flo_btn_activity_audio_player_stop)
-        val seekbar = findViewById<SeekBar>(R.id.ske_activity_audio_player)
-        playButton.setOnClickListener{
-            if (mp== null ){
-                mp= MediaPlayer.create(this,id)
-                Log.d("AudioPlayer","ID: ${mp!!.audioSessionId} seconds")
-                //initialiseSeekBar()
-            }
-            mp?.start()
-            Log.d("AudioPlayer","Duration: ${mp!!.duration/1000} seconds")
-        }
-
-        pauseButton.setOnClickListener{
-            if(mp !==null) mp?.pause()
-            Log.d("AudioPlayer","Pause at: ${mp!!.currentPosition/1000} seconds")
-
-        }
-        stopButton.setOnClickListener{
             if(mp !==null){
                 mp?.stop()
                 mp?.reset()
                 mp?.release()
                 mp = null
             }
+            if (position<longOfList){
+                position ++
+            }else{
+                position = 0
+            }
+            mp= MediaPlayer.create(this, Uri.parse(songsList[position]))
+            mp?.start()
+        }
+        prevButton.setOnClickListener {
+            if(mp !==null){
+                mp?.stop()
+                mp?.reset()
+                mp?.release()
+                mp = null
+            }
+            if (position==0){
+                position =longOfList
+            }else{
+                position --
+            }
+            mp= MediaPlayer.create(this, Uri.parse(songsList[position]))
+            mp?.start()
         }
 
+        /*     seekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+         override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+             if (fromUser) mp?.seekTo(progress)
+         }
 
+         override fun onStartTrackingTouch(seekBar: SeekBar?) {
+         }
 
-   /*     seekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                if (fromUser) mp?.seekTo(progress)
-            }
+         override fun onStopTrackingTouch(seekBar: SeekBar?) {
+         }
 
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-            }
-
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-            }
-
-        })*/
-
-
+     })*/
 
     }
+
     private fun initialiseSeekBar(){
         val seekbar = findViewById<SeekBar>(R.id.ske_activity_audio_player)
         seekbar.max = mp!!.duration
@@ -158,18 +155,17 @@ class AudioPlayer : AppCompatActivity() {
         }
         return songs
     }
-
     private fun audiosQuantity():Int{
         var userNameExtra=intent.getStringExtra("userNameExtra")
         val folder= File(if (isExternalStorageWritable()) this.getExternalFilesDir(null)!!.absolutePath + "/audios/" +"$userNameExtra/" else filesDir.toString() + "/audios/" +"$userNameExtra/")
         var j:Int =0
         File("$folder").walk().forEach {
-            j++
+            if(it!=folder){
+                j++
+            }
         }
-        return j-1
+        return j
     }
-
-
     private fun isExternalStorageWritable(): Boolean {
         val isSDPresent = Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED
         val isSDSupportedDevice = Environment.isExternalStorageRemovable()
@@ -177,4 +173,24 @@ class AudioPlayer : AppCompatActivity() {
     }
 
 
+    @SuppressLint("ResourceAsColor")
+    private fun songsExist(){
+        val playButton  =findViewById<FloatingActionButton>(R.id.flo_btn_activity_audio_player_play)
+        val pauseButton  =findViewById<FloatingActionButton>(R.id.flo_btn_activity_audio_player_pause)
+        val stopButton  =findViewById<FloatingActionButton>(R.id.flo_btn_activity_audio_player_stop)
+        val nextButton = findViewById<FloatingActionButton>(R.id.flo_btn_activity_audio_player_next)
+        val prevButton = findViewById<FloatingActionButton>(R.id.flo_btn_activity_audio_player_prev)
+        val noAudiosText =findViewById<TextView>(R.id.txt_activity_audio_player_no_audios)
+        if(audiosQuantity()<1){
+            playButton.isEnabled=false
+            pauseButton.isEnabled=false
+            stopButton.isEnabled=false
+            nextButton.isEnabled=false
+            prevButton.isEnabled=false
+            noAudiosText.text = "NO HAY AUDIOS PARA REPRODUCIR"
+            noAudiosText.setBackgroundColor(R.color.black)
+
+
+        }
+    }
 }
