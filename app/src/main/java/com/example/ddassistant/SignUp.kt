@@ -3,7 +3,6 @@ package com.example.ddassistant
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.Gravity
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -11,11 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.ddassistant.data.User
 import com.example.ddassistant.data.UserViewModel
-import java.util.List.of
-import java.util.regex.Pattern
 
 class SignUp : AppCompatActivity() {
-
     private lateinit var mUserViewModel:UserViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,9 +32,9 @@ class SignUp : AppCompatActivity() {
     }
 
     private fun insertDataToDatabase() {
-        val userEditText = findViewById<EditText>(R.id.txt_activity_sing_in_user)
-        val passEditText = findViewById<EditText>(R.id.txt_activity_sing_in_pass)
-        val emalEditText = findViewById<EditText>(R.id.txt_activity_sing_in_email)
+        val userEditText = findViewById<EditText>(R.id.txt_activity_sing_in_user2)
+        val passEditText = findViewById<EditText>(R.id.txt_activity_sing_in_pass_2)
+        val emalEditText = findViewById<EditText>(R.id.txt_activity_sing_in_email2)
         val userName = userEditText.text.toString()
         val userPass = passEditText.text.toString()
         val userEmail = emalEditText.text.toString()
@@ -49,7 +45,7 @@ class SignUp : AppCompatActivity() {
                     //crear objeto usuario
                     val user = User(0, userName, userPass, userEmail)
                     //añadir a la base
-                    mUserViewModel.addUser(user)
+                  mUserViewModel.addUser(user)
                     Toast.makeText(this, "Registro exitoso", Toast.LENGTH_LONG).show()
                 }else{
                     Toast.makeText(this, "Correo Invalido", Toast.LENGTH_LONG).show()
@@ -74,4 +70,5 @@ class SignUp : AppCompatActivity() {
     private fun checkEmail(userEmail: String): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()
     }
+
 }

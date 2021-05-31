@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/dragonsacalegreen"
     tools:context=".SignUp">
 
     <Button
@@ -15,24 +16,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_activity_sing_in_pass" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_activity_sing_in_pass_2" />
 
     <EditText
-        android:id="@+id/txt_activity_sing_in_email"
+        android:id="@+id/txt_activity_sing_in_email2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:autofillHints=""
+        android:background="@color/black"
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_activity_sing_in_user" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_activity_sing_in_user2" />
 
     <TextView
         android:id="@+id/textView_activity_sing_in_data"
@@ -41,13 +44,14 @@
         android:layout_marginTop="40dp"
         android:gravity="center"
         android:text="@string/ingrese_sus_datos"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/txt_activity_sing_in_user"
+        android:id="@+id/txt_activity_sing_in_user2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -55,6 +59,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
+        android:background="@color/black"
         android:ems="10"
         android:hint="@string/usuario"
         android:importantForAutofill="no"
@@ -65,21 +70,23 @@
         app:layout_constraintTop_toBottomOf="@+id/textView_activity_sing_in_data" />
 
     <EditText
-        android:id="@+id/txt_activity_sing_in_pass"
+        android:id="@+id/txt_activity_sing_in_pass_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:autofillHints=""
+        android:background="@color/black"
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_activity_sing_in_email" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_activity_sing_in_email2" />
 
     <Button
         android:id="@+id/btn_activity_sing_in_register"
@@ -90,6 +97,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_activity_sing_in_pass" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_activity_sing_in_pass_2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

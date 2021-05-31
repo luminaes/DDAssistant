@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         userDao= AppDatabase.getDatabase(this).UserDao()
         //data de todos los usuarios por consola
-        //userDao.readAlldata().observe(this, Observer {usuarios -> usuarios.forEach{println(it) }})
+        userDao.readAlldata().observe(this, Observer {usuarios -> usuarios.forEach{println(it) }})
         userEditText = findViewById<EditText>(R.id.txt_activity_main_name)
         passEditText = findViewById<EditText>(R.id.txt_activity_main_pass)
         val loginButton = findViewById<Button>(R.id.btn_activity_main_log)

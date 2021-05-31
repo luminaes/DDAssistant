@@ -45,10 +45,8 @@ class AudioPlayer : AppCompatActivity() {
         prevButton.scaleType = ImageView.ScaleType.CENTER
         songsExist()
         var userNameExtra=intent.getStringExtra("userNameExtra")
-        val seekbar = findViewById<SeekBar>(R.id.ske_activity_audio_player)
+        var seekbar = findViewById<SeekBar>(R.id.seekBar)
         val id = currentSong[0]
-
-
 
         playButton.setOnClickListener{
             if (audiosQuantity()<1){
@@ -56,7 +54,7 @@ class AudioPlayer : AppCompatActivity() {
                     mp= MediaPlayer.create(this, Uri.parse(songsList[position]))
                     // mp= MediaPlayer.create(this, Uri.parse(song.toString()) )
                     Log.d("AudioPlayer","ID: ${mp!!.audioSessionId} seconds")
-                    //initialiseSeekBar()
+                    initialiseSeekBar()
                 }
                 mp?.start()
                 Log.d("AudioPlayer","Duration: ${mp!!.duration/1000} seconds")
@@ -109,7 +107,8 @@ class AudioPlayer : AppCompatActivity() {
             mp?.start()
         }
 
-        /*     seekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+
+        seekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
          override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
              if (fromUser) mp?.seekTo(progress)
          }
@@ -120,7 +119,7 @@ class AudioPlayer : AppCompatActivity() {
          override fun onStopTrackingTouch(seekBar: SeekBar?) {
          }
 
-     })*/
+     })
 
     }
 

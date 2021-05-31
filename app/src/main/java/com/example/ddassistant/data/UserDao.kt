@@ -8,6 +8,8 @@ import androidx.room.Query
 
 @Dao
 interface UserDao {
+
+    //insert funcional
     @Insert(onConflict = OnConflictStrategy.IGNORE) // ignora en caso de dato repetido
     suspend fun addUser(user : User)
     //LogIN
