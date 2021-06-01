@@ -96,9 +96,9 @@ class Record : AppCompatActivity() {
             val permissions = arrayOf(android.Manifest.permission.RECORD_AUDIO, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE)
             ActivityCompat.requestPermissions(this, permissions,0)
             var dateTime = LocalDateTime.now().toString()
-            /*if (dateTime.contains(":")){
+            if (dateTime.contains(":")){
                 dateTime = dateTime.replace(":", "")
-            }*/
+            }
             output = pathOfAudio(dateTime)
             mediaRecorder = MediaRecorder()//creo instancia de media record
             mediaRecorder?.setAudioSource(MediaRecorder.AudioSource.MIC)// especifico fuente del audio
