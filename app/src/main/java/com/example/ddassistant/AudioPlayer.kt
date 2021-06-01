@@ -12,7 +12,9 @@ import android.util.Log
 import android.widget.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.io.File
+import java.io.Reader
 import java.lang.Exception
+import java.time.LocalDateTime
 import java.util.Collections.max
 
 class AudioPlayer : AppCompatActivity() {
@@ -47,6 +49,7 @@ class AudioPlayer : AppCompatActivity() {
         var userNameExtra=intent.getStringExtra("userNameExtra")
         var seekbar = findViewById<SeekBar>(R.id.seekBar)
         val id = currentSong[0]
+        val numberSongTxt = findViewById<TextView>(R.id.txt_activity_audio_player_number_song)
 
         playButton.setOnClickListener{
             if (audiosQuantity()<1){
@@ -54,7 +57,8 @@ class AudioPlayer : AppCompatActivity() {
                     mp= MediaPlayer.create(this, Uri.parse(songsList[position]))
                     // mp= MediaPlayer.create(this, Uri.parse(song.toString()) )
                     Log.d("AudioPlayer","ID: ${mp!!.audioSessionId} seconds")
-                    initialiseSeekBar()
+                    //initialiseSeekBar()
+                    numberSongTxt.text="Pista N° $position"
                 }
                 mp?.start()
                 Log.d("AudioPlayer","Duration: ${mp!!.duration/1000} seconds")
@@ -90,6 +94,7 @@ class AudioPlayer : AppCompatActivity() {
             }
             mp= MediaPlayer.create(this, Uri.parse(songsList[position]))
             mp?.start()
+            numberSongTxt.text="Pista N° $position"
         }
         prevButton.setOnClickListener {
             if(mp !==null){
@@ -105,6 +110,7 @@ class AudioPlayer : AppCompatActivity() {
             }
             mp= MediaPlayer.create(this, Uri.parse(songsList[position]))
             mp?.start()
+            numberSongTxt.text="Pista N° $position"
         }
 
 
@@ -123,8 +129,8 @@ class AudioPlayer : AppCompatActivity() {
 
     }
 
-    private fun initialiseSeekBar(){
-        val seekbar = findViewById<SeekBar>(R.id.ske_activity_audio_player)
+   /* private fun initialiseSeekBar(){
+        //val seekbar = findViewById<SeekBar>(R.id.ske_activity_audio_player)
         seekbar.max = mp!!.duration
         //val handler = Handler()
         val handler = Handler(Looper.getMainLooper())
@@ -138,7 +144,7 @@ class AudioPlayer : AppCompatActivity() {
                 }
             }
         },0 )
-    }
+    }*/
 
     private fun audioListString(): Array<String> {
         var userNameExtra=intent.getStringExtra("userNameExtra")
@@ -188,8 +194,18 @@ class AudioPlayer : AppCompatActivity() {
             prevButton.isEnabled=false
             noAudiosText.text = "NO HAY AUDIOS PARA REPRODUCIR"
             noAudiosText.setBackgroundColor(R.color.black)
-
-
         }
     }
+
+    private fun songNames(){
+        audioListString()
+        val names = Array<String>(audiosQuantity()){ "it = $it" }
+        names[0] =audioListString()[0]
+        if (names[0].contains("*/")){
+            names[0] = names[0].replace("*/", "")
+        }
+    }
+
+
+
 }
