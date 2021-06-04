@@ -50,20 +50,18 @@ class AudioPlayer : AppCompatActivity() {
         var seekbar = findViewById<SeekBar>(R.id.seekBar)
         val id = currentSong[0]
         val numberSongTxt = findViewById<TextView>(R.id.txt_activity_audio_player_number_song)
+        numberSongTxt.text="Pista : $position"
 
         playButton.setOnClickListener{
-            if (audiosQuantity()<1){
                 if (mp== null ){
                     mp= MediaPlayer.create(this, Uri.parse(songsList[position]))
                     // mp= MediaPlayer.create(this, Uri.parse(song.toString()) )
                     Log.d("AudioPlayer","ID: ${mp!!.audioSessionId} seconds")
                     //initialiseSeekBar()
-                    numberSongTxt.text="Pista N° $position"
+                    numberSongTxt.text="Pista : $position"
                 }
                 mp?.start()
                 Log.d("AudioPlayer","Duration: ${mp!!.duration/1000} seconds")
-            }
-
         }
 
         pauseButton.setOnClickListener{
@@ -78,7 +76,7 @@ class AudioPlayer : AppCompatActivity() {
                 mp?.reset()
                 mp?.release()
                 mp = null
-            }
+            }else Toast.makeText(this, "No Se Esta Reproduciendo Audio", Toast.LENGTH_SHORT).show()
         }
         nextButton.setOnClickListener {
             if(mp !==null){
@@ -94,7 +92,7 @@ class AudioPlayer : AppCompatActivity() {
             }
             mp= MediaPlayer.create(this, Uri.parse(songsList[position]))
             mp?.start()
-            numberSongTxt.text="Pista N° $position"
+            numberSongTxt.text="Pista : $position"
         }
         prevButton.setOnClickListener {
             if(mp !==null){
@@ -110,7 +108,7 @@ class AudioPlayer : AppCompatActivity() {
             }
             mp= MediaPlayer.create(this, Uri.parse(songsList[position]))
             mp?.start()
-            numberSongTxt.text="Pista N° $position"
+            numberSongTxt.text="Pista : $position"
         }
 
 
@@ -205,7 +203,5 @@ class AudioPlayer : AppCompatActivity() {
             names[0] = names[0].replace("*/", "")
         }
     }
-
-
 
 }

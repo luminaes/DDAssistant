@@ -18,7 +18,6 @@ class Menu : AppCompatActivity() {
         var userNameExtra=intent.getStringExtra("userNameExtra")
         val userNameText =findViewById<TextView>(R.id.txt_activity_menu_user)
         userNameText.text= "Bienvenido " + "$userNameExtra"
-
         //record
         val recordButton = findViewById<Button>(R.id.btn_activity_menu_record)
         recordButton.setOnClickListener {
@@ -42,7 +41,7 @@ class Menu : AppCompatActivity() {
         //send location
         val locationButton = findViewById<Button>(R.id.btn_activity_menu_send_location)
         locationButton.setOnClickListener {
-            val intent4 = Intent(this,SendLocation::class.java)
+            val intent4 = Intent(this,Dices::class.java)
             startActivity(intent4)
         }
 

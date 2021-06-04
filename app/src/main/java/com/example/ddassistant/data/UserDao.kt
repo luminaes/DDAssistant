@@ -17,6 +17,10 @@ interface UserDao {
     fun findOne(user: String, pass: String): LiveData<User>  //live data para consulta asincronica
     //fun findOne(user: String, pass: String): User?
 
+    //Check user name
+    @Query(value="SELECT * FROM user_table where username = :user")
+    fun findname(user: String): LiveData<User>
+
 
     @Query(value = "SELECT * FROM user_table ORDER BY id ASC")
     fun readAlldata(): LiveData<List<User>>

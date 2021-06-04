@@ -30,4 +30,8 @@
     <string name="seleccionar_hora">Seleccionar Hora</string>
     <string name="hora_de_inicio">Hora de Inicio</string>
     <string name="fecha_de_inicio">Fecha de Inicio</string>
+    <string name="tirar_dados">Tirar Dados</string>
+    <string name="bienvenido">Bienvenido</string>
+    <string name="dados">DADOS</string>
+    <string name="reproductor_de_sonido">REPRODUCTOR DE SONIDO</string>
 </resources>

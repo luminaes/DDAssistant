@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".SendLocation"></activity>
+        <activity android:name=".Dices"></activity>
         <activity android:name=".AudioPlayer" />
         <activity android:name=".Calendar" />
         <activity android:name=".Record" />
