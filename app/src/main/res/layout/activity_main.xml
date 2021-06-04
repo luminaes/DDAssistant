@@ -62,7 +62,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_activity_main_name" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_activity_main_name"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/white" />
 
     <Button
         android:id="@+id/btn_activity_main_log"

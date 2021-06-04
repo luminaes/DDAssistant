@@ -40,24 +40,28 @@ class AudioPlayer : AppCompatActivity() {
         val stopButton  =findViewById<FloatingActionButton>(R.id.flo_btn_activity_audio_player_stop)
         val nextButton = findViewById<FloatingActionButton>(R.id.flo_btn_activity_audio_player_next)
         val prevButton = findViewById<FloatingActionButton>(R.id.flo_btn_activity_audio_player_prev)
+        val numberSongTxt = findViewById<TextView>(R.id.txt_activity_audio_player_number_song)
         playButton.scaleType = ImageView.ScaleType.CENTER
         pauseButton.scaleType = ImageView.ScaleType.CENTER
         stopButton.scaleType = ImageView.ScaleType.CENTER
         nextButton.scaleType = ImageView.ScaleType.CENTER
         prevButton.scaleType = ImageView.ScaleType.CENTER
+        numberSongTxt.text="Pista : $position"
         songsExist()
         var userNameExtra=intent.getStringExtra("userNameExtra")
-        var seekbar = findViewById<SeekBar>(R.id.seekBar)
+        var seek = findViewById<SeekBar>(R.id.seekBar)
+        seek.isEnabled=false
         val id = currentSong[0]
-        val numberSongTxt = findViewById<TextView>(R.id.txt_activity_audio_player_number_song)
-        numberSongTxt.text="Pista : $position"
+
+
 
         playButton.setOnClickListener{
                 if (mp== null ){
                     mp= MediaPlayer.create(this, Uri.parse(songsList[position]))
                     // mp= MediaPlayer.create(this, Uri.parse(song.toString()) )
                     Log.d("AudioPlayer","ID: ${mp!!.audioSessionId} seconds")
-                    //initialiseSeekBar()
+                    seek.isEnabled=true
+                    initialiseSeekBar()
                     numberSongTxt.text="Pista : $position"
                 }
                 mp?.start()
@@ -76,6 +80,7 @@ class AudioPlayer : AppCompatActivity() {
                 mp?.reset()
                 mp?.release()
                 mp = null
+                seek.isEnabled=false
             }else Toast.makeText(this, "No Se Esta Reproduciendo Audio", Toast.LENGTH_SHORT).show()
         }
         nextButton.setOnClickListener {
@@ -112,7 +117,7 @@ class AudioPlayer : AppCompatActivity() {
         }
 
 
-        seekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        seek.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
          override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
              if (fromUser) mp?.seekTo(progress)
          }
@@ -127,22 +132,22 @@ class AudioPlayer : AppCompatActivity() {
 
     }
 
-   /* private fun initialiseSeekBar(){
-        //val seekbar = findViewById<SeekBar>(R.id.ske_activity_audio_player)
-        seekbar.max = mp!!.duration
+    private fun initialiseSeekBar(){
+        val seek = findViewById<SeekBar>(R.id.seekBar)
+        seek.max = mp!!.duration
         //val handler = Handler()
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed(object:Runnable{
             override fun run() {
                 try {
-                    seekbar.progress=mp!!.currentPosition
+                    seek.progress=mp!!.currentPosition
                     handler.postDelayed(this,1000)
                 }catch (e:Exception){
-                    seekbar.progress = 0
+                    seek.progress = 0
                 }
             }
         },0 )
-    }*/
+    }
 
     private fun audioListString(): Array<String> {
         var userNameExtra=intent.getStringExtra("userNameExtra")
@@ -184,6 +189,7 @@ class AudioPlayer : AppCompatActivity() {
         val nextButton = findViewById<FloatingActionButton>(R.id.flo_btn_activity_audio_player_next)
         val prevButton = findViewById<FloatingActionButton>(R.id.flo_btn_activity_audio_player_prev)
         val noAudiosText =findViewById<TextView>(R.id.txt_activity_audio_player_no_audios)
+        val numberSongTxt = findViewById<TextView>(R.id.txt_activity_audio_player_number_song)
         if(audiosQuantity()<1){
             playButton.isEnabled=false
             pauseButton.isEnabled=false
@@ -191,6 +197,7 @@ class AudioPlayer : AppCompatActivity() {
             nextButton.isEnabled=false
             prevButton.isEnabled=false
             noAudiosText.text = "NO HAY AUDIOS PARA REPRODUCIR"
+            numberSongTxt.text=""
             noAudiosText.setBackgroundColor(R.color.black)
         }
     }
