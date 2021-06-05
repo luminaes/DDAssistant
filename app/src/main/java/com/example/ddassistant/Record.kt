@@ -9,6 +9,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -50,14 +51,19 @@ class Record : AppCompatActivity() {
         val recordButton = findViewById<Button>(R.id.btn_activity_record_rec)
         val puaseResumeButton = findViewById<Button>(R.id.btn_activity_record_pause_resume)
         val stopButton = findViewById<Button>(R.id.btn_activity_record_stop)
+        val microImage =findViewById<ImageView>(R.id.img_activity_record_mic)
         recordButton.setOnClickListener {
             startRecording()
+            microImage.setImageResource(R.drawable.mocrofonorojotranspa)
+
         }
         puaseResumeButton.setOnClickListener {
             pauseRecording()
+            microImage.setImageResource(R.drawable.mocrofonoamarillotranspa)
         }
         stopButton.setOnClickListener {
             stopRecording()
+            microImage.setImageResource(R.drawable.mocrofonogristranspa)
         }
 
     }

@@ -20,7 +20,7 @@ import java.util.Collections.max
 class AudioPlayer : AppCompatActivity() {
 
     private var mp: MediaPlayer? =null
-    private var currentSong = mutableListOf(R.raw.push)
+    //private var currentSong = mutableListOf(R.raw.push)
    // private var currentSong = mutableListOf("/data/user/0/com.example.ddassistant/files/audios/push.mp3")
     private lateinit var seekBar: SeekBar
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +51,7 @@ class AudioPlayer : AppCompatActivity() {
         var userNameExtra=intent.getStringExtra("userNameExtra")
         var seek = findViewById<SeekBar>(R.id.seekBar)
         seek.isEnabled=false
-        val id = currentSong[0]
+        //val id = currentSong[0]
 
 
 
