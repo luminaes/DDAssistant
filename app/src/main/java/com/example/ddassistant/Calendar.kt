@@ -67,7 +67,7 @@ class Calendar : AppCompatActivity() {
                 timeSelectStart.isClickable = true
                 timeSelectEnd.text ="Hora de Finalizacion"
                 timeSelectEnd.isClickable = true
-                dateSelectEnd.text="Fecha: + $dayEnd + / +$monthEnd + /  + $yearEnd"
+                dateSelectEnd.text="Fecha:" + "$dayEnd"+ "/" +"$monthEnd"+ "/"  + "$yearEnd"
                 dateSelectEnd.isClickable = true
                 yearEnd = 0
                 monthEnd= 0
