@@ -46,7 +46,7 @@ class AudioPlayer : AppCompatActivity() {
         stopButton.scaleType = ImageView.ScaleType.CENTER
         nextButton.scaleType = ImageView.ScaleType.CENTER
         prevButton.scaleType = ImageView.ScaleType.CENTER
-        numberSongTxt.text="Pista : $position"
+        numberSongTxt.text="Pista " + "$position"
         songsExist()
         var userNameExtra=intent.getStringExtra("userNameExtra")
         var seek = findViewById<SeekBar>(R.id.seekBar)
@@ -98,7 +98,7 @@ class AudioPlayer : AppCompatActivity() {
             }
             mp= MediaPlayer.create(this, Uri.parse(songsList[position]))
             mp?.start()
-            numberSongTxt.text="Pista  $position"
+            numberSongTxt.text="Pista " + "$position"
         }
         prevButton.setOnClickListener {
             if(mp !==null){
@@ -114,7 +114,7 @@ class AudioPlayer : AppCompatActivity() {
             }
             mp= MediaPlayer.create(this, Uri.parse(songsList[position]))
             mp?.start()
-            numberSongTxt.text="Pista  $position"
+            numberSongTxt.text="Pista " + "$position"
         }
 
 
