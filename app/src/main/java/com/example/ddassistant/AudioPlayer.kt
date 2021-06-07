@@ -60,9 +60,10 @@ class AudioPlayer : AppCompatActivity() {
                     mp= MediaPlayer.create(this, Uri.parse(songsList[position]))
                     // mp= MediaPlayer.create(this, Uri.parse(song.toString()) )
                     Log.d("AudioPlayer","ID: ${mp!!.audioSessionId} seconds")
+                    numberSongTxt.text="Pista " + "$position"
                     seek.isEnabled=true
                     initialiseSeekBar()
-                    numberSongTxt.text="Pista : $position"
+
                 }
                 mp?.start()
                 Log.d("AudioPlayer","Duration: ${mp!!.duration/1000} seconds")
@@ -97,7 +98,7 @@ class AudioPlayer : AppCompatActivity() {
             }
             mp= MediaPlayer.create(this, Uri.parse(songsList[position]))
             mp?.start()
-            numberSongTxt.text="Pista : $position"
+            numberSongTxt.text="Pista  $position"
         }
         prevButton.setOnClickListener {
             if(mp !==null){
@@ -113,7 +114,7 @@ class AudioPlayer : AppCompatActivity() {
             }
             mp= MediaPlayer.create(this, Uri.parse(songsList[position]))
             mp?.start()
-            numberSongTxt.text="Pista : $position"
+            numberSongTxt.text="Pista  $position"
         }
 
 
